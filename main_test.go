@@ -12,8 +12,15 @@ import (
 func Test_opSet1(t *testing.T) {
 	go opSet1()
 	chSet <- "foo"
+
 	time.Sleep(1 * time.Second)
 	assert.True(t, set["foo"])
+
+	chDelete <- "foo"
+
+	time.Sleep(1 * time.Second)
+	_, ok := set["foo"]
+	assert.False(t, ok)
 
 	// reset
 	close(chQuit)
