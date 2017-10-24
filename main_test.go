@@ -9,28 +9,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_dispatch1(t *testing.T) {
-	nw, nj := 3, 10
-	dispatch1(nw, nj)
-	time.Sleep(3 * time.Second)
-}
-
-func Test_dispatch2(t *testing.T) {
-	nw, nj := 3, 10
-
-	var wg sync.WaitGroup
-	wg.Add(nj)
-	done = func() {
-		wg.Done()
-	}
-	dispatch2(nw, nj)
-
-	wg.Wait()
-
-	// reset
-	done = func() {}
-}
-
 func Test_opSet1(t *testing.T) {
 	go opSet1()
 	chSet <- "foo"
@@ -63,6 +41,28 @@ func Test_opSet2(t *testing.T) {
 	// reset
 	close(chQuit)
 	chQuit = make(chan bool)
+}
+
+func Test_dispatch1(t *testing.T) {
+	nw, nj := 3, 10
+	dispatch1(nw, nj)
+	time.Sleep(3 * time.Second)
+}
+
+func Test_dispatch2(t *testing.T) {
+	nw, nj := 3, 10
+
+	var wg sync.WaitGroup
+	wg.Add(nj)
+	done = func() {
+		wg.Done()
+	}
+	dispatch2(nw, nj)
+
+	wg.Wait()
+
+	// reset
+	done = func() {}
 }
 
 func Test_polling1Timeout(t *testing.T) {
