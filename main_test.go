@@ -153,6 +153,7 @@ func Test_polling2Success(t *testing.T) {
 	fc.WaitForNWatchersAndIncrement(interval, 2)
 	<-chTickDone
 	assert.Equal(t, 1, numOfTick)
+	assert.Nil(t, err)
 
 	fc.WaitForNWatchersAndIncrement(interval, 2)
 	<-chTickDone

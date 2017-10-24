@@ -94,7 +94,7 @@ func dispatch2(nw, nj int) {
 	close(jobs)
 }
 
-// polling
+// Polling
 var (
 	timeout   = 5 * time.Second
 	interval  = 1 * time.Second
