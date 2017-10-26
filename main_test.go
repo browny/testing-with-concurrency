@@ -9,6 +9,47 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// --- Concurrency 101 ---
+func Test_goroutine(t *testing.T) {
+	goroutine()
+}
+
+func Test_chanSimple1(t *testing.T) {
+	chanSimple1()
+}
+
+func Test_chanSimple2(t *testing.T) {
+	chanSimple2()
+}
+
+func Test_sentinel1(t *testing.T) {
+	sentinel1()
+}
+
+func Test_noBuffer(t *testing.T) {
+	noBuffer()
+}
+
+func Test_withBuffer(t *testing.T) {
+	withBuffer()
+}
+
+func Test_rangeChan(t *testing.T) {
+	rangeChan()
+}
+func Test_closeChanNotBlock(t *testing.T) {
+	closeChanNotBlock()
+}
+
+func Test_sentinel2(t *testing.T) {
+	sentinel2()
+}
+
+func Test_selectChan(t *testing.T) {
+	selectChan()
+}
+
+// --- Thread-Safe Operation ---
 func Test_opSet1(t *testing.T) {
 	go opSet1()
 	chSet <- "foo"
@@ -50,6 +91,7 @@ func Test_opSet2(t *testing.T) {
 	chQuit = make(chan bool)
 }
 
+// --- Worker Pools ---
 func Test_dispatch1(t *testing.T) {
 	nw, nj := 3, 10
 	dispatch1(nw, nj)
@@ -72,6 +114,7 @@ func Test_dispatch2(t *testing.T) {
 	done = func() {}
 }
 
+// --- Polling ---
 func Test_polling1Timeout(t *testing.T) {
 	pollFn = func() error {
 		return fmt.Errorf("err")
